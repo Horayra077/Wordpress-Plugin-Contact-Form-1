@@ -16,9 +16,24 @@
  * Domain Path:       /languages
  */
 
-
+define('WP_CONTACT_URL', plugin_dir_url(__FILE__));
+define('WP_CONTACT_ASSETS', WP_CONTACT_URL . 'assets');
 define('WP_CONTACT_DIR', __DIR__);
 
+// Include post type
+include(WP_CONTACT_DIR . '/includes/post-types.php');
 
 // Include setting page
-include(WP_CONTACT_DIR . '/includes/setting-page.php');
+// include(WP_CONTACT_DIR . '/includes/setting-page.php');
+
+// Shortcodes
+include(WP_CONTACT_DIR . '/includes/shortcodes.php');
+
+// Include plugin assets
+include(plugin_dir_path(__FILE__) . 'includes/plugin-assets.php');
+
+// Include dynamic-script
+include(WP_CONTACT_DIR . '/includes/dynamic-script.php');
+
+// // Include Rest API
+// include(WP_CONTACT_DIR . '/includes/rest_api.php');

@@ -3,13 +3,21 @@
 function wp_contact_setting_page()
 {
     add_menu_page(
-        'Contact Form 1',
-        'WPContact',
-        'manage_options',
-        'wp_contact',
-        'wp_contact_setting_page_markup',
-        'dashicons-editor-table',
-        100
+        'Contact Form 1', //$page_title
+        'WPContact',  // $menu_title
+        'manage_options', // $capability
+        'wp_contact', // $menu_slug
+        'wp_contact_setting_page_markup', // $callback
+        'dashicons-editor-table', // $icon_url
+
+    );
+
+    add_submenu_page(
+        'wp_contact',                 // parent slug
+        'Your CPT Title',             // page title
+        'All Form',             // sub-menu title
+        'manage_options',                 // capability
+        'edit.php?post_type=wp_contact' // your menu menu slug
     );
 }
 
