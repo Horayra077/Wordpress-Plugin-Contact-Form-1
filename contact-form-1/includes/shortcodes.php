@@ -19,7 +19,7 @@ function contact_forms_shortcode_callback()
                 <input name="phone" type="text" placeholder="Phone" class="form-control">
             </div>
             <div class="form-group mt-3">
-                <textarea name="message" placeholder="Type your message" class="form-control"></textarea>
+                <input name="address" type="text" placeholder="Address" class="form-control">
             </div>
             <div class="form-group mt-3">
                 <button class="btn btn-lg btn-primary w-100">Submit</button>

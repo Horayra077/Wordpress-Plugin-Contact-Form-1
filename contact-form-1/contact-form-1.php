@@ -24,7 +24,7 @@ define('WP_CONTACT_DIR', __DIR__);
 include(WP_CONTACT_DIR . '/includes/post-types.php');
 
 // Include setting page
-// include(WP_CONTACT_DIR . '/includes/setting-page.php');
+include(WP_CONTACT_DIR . '/includes/setting-page.php');
 
 // Shortcodes
 include(WP_CONTACT_DIR . '/includes/shortcodes.php');
@@ -37,3 +37,6 @@ include(WP_CONTACT_DIR . '/includes/dynamic-script.php');
 
 // // Include Rest API
 // include(WP_CONTACT_DIR . '/includes/rest_api.php');
+
+// Add options
+// include(WP_CONTACT_DIR . '/includes/add_options.php');

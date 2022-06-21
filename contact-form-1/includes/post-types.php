@@ -34,7 +34,7 @@ function wp_contact_post_type()
         'public'             => true,
         'publicly_queryable' => true,
         'show_ui'            => true,
-        'show_in_menu'       => true,
+        'show_in_menu'       => false,
         'query_var'          => true,
         'rewrite'            => array('slug' => 'wp_contact'),
         'capability_type'    => 'post',
@@ -48,3 +48,56 @@ function wp_contact_post_type()
 }
 
 add_action('init', 'wp_contact_post_type');
+
+
+
+/**
+ * Register Metabox
+ */
+function prefix_add_meta_boxes()
+{
+    add_meta_box('unique_mb_id', __('Contact Form Data', 'text-domain'), 'prefix_mb_callback', ['wp_contact']);
+}
+add_action('add_meta_boxes', 'prefix_add_meta_boxes');
+
+/**
+ * Meta field callback function
+ */
+function prefix_mb_callback($post)
+{
+
+    global $post;
+    $data = get_post_custom($post->ID);
+    $val1 = isset($data['post_name']) ? esc_attr($data['post_name'][0]) : 'no value';
+    $val2 = isset($data['post_email']) ? esc_attr($data['post_email'][0]) : 'no value';
+    $val3 = isset($data['post_phone']) ? esc_attr($data['post_phone'][0]) : 'no value';
+    $val4 = isset($data['post_address']) ? esc_attr($data['post_address'][0]) : 'no value';
+?>
+
+    <label for="name"><?php echo esc_html('Name', 'text-domain'); ?></label>
+    <input type="text" class="regular-text" name="post_name" value="<?php echo $val1 ?>" id="name">
+
+    <label for="email"><?php echo esc_html('Email', 'text-domain'); ?></label>
+    <input type="text" class="regular-text" name="post_email" value="<?php echo $val2 ?>" id="email">
+
+    <label for="phone"><?php echo esc_html('Phone', 'text-domain'); ?></label>
+    <input type="text" class="regular-text" name="post_phone" value="<?php echo $val3 ?>" id="phone">
+
+    <label for="message"><?php echo esc_html('Address', 'text-domain'); ?></label>
+    <input type="text" name="post_message" id="message" value="<?php echo $val4 ?>" class="regular-text"></input>
+
+<?php }
+
+add_action("save_post", "save_detail");
+function save_detail()
+{
+    global $post;
+    if (defined('DOING AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post->ID;
+    }
+
+    update_post_meta($post->ID, "post_name", $_POST["post_name"]);
+    update_post_meta($post->ID, "post_email", $_POST["post_email"]);
+    update_post_meta($post->ID, "post_phone", $_POST["post_phone"]);
+    update_post_meta($post->ID, "post_address", $_POST["post_address"]);
+}
