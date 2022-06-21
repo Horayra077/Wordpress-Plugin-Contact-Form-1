@@ -12,7 +12,7 @@ function contact_form_assets()
     wp_enqueue_script('wp_contact-scripts',  WP_CONTACT_ASSETS . '/js/scripts.js', ['jquery'], time(), true);
     // in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
 
-    wp_localize_script('jquery_js', 'contactData', array(
+    wp_localize_script('bootstrap_js', 'contactData', array(
         'root_url' => get_site_url()
     ));
 }

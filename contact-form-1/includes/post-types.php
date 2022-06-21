@@ -74,25 +74,34 @@ function prefix_mb_callback($post)
     $val4 = isset($data['post_address']) ? esc_attr($data['post_address'][0]) : 'no value';
 ?>
 
-    <label for="name"><?php echo esc_html('Name', 'text-domain'); ?></label>
-    <input type="text" class="regular-text" name="post_name" value="<?php echo $val1 ?>" id="name">
 
-    <label for="email"><?php echo esc_html('Email', 'text-domain'); ?></label>
-    <input type="text" class="regular-text" name="post_email" value="<?php echo $val2 ?>" id="email">
 
-    <label for="phone"><?php echo esc_html('Phone', 'text-domain'); ?></label>
-    <input type="text" class="regular-text" name="post_phone" value="<?php echo $val3 ?>" id="phone">
-
-    <label for="message"><?php echo esc_html('Address', 'text-domain'); ?></label>
-    <input type="text" name="post_message" id="message" value="<?php echo $val4 ?>" class="regular-text"></input>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"><?php echo $val1 ?></th>
+                <td><?php echo $val2 ?></td>
+                <td><?php echo $val3 ?></td>
+                <td><?php echo $val4 ?></td>
+            </tr>
+        </tbody>
+    </table>
 
 <?php }
 
-add_action("save_post", "save_detail");
+add_action('save_post', 'save_detail');
 function save_detail()
 {
     global $post;
-    if (defined('DOING AUTOSAVE') && DOING_AUTOSAVE) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return $post->ID;
     }
 

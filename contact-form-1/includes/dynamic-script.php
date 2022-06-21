@@ -15,7 +15,7 @@ function load_dynamic_script()
 
 
                 $.ajax({
-                    method: 'post',
+                    method: 'POST',
                     url: contactData.root_url + '/wp-json/wp_contact/v1/send_email',
                     headers: {
                         'X-WP-Nonce': nonce
@@ -52,15 +52,16 @@ function handle_contact_form($data)
     $post_id = wp_insert_post([
         'post_type' => 'wp_contact',
         'post_title' => $_POST['name'],
-        // 'post_content' => $_POST['message'],
         'meta_input'   => array(
             'post_name' => $_POST['name'],
             'post_email'   => $_POST['email'],
             'post_phone'   => $_POST['phone'],
             'post_address'   => $_POST['address'],
         ),
-        'post_status' => 'publish',
+
     ]);
+
+
 
     if ($post_id) {
         return new WP_REST_Response('Thank you for filling out the form', 200);

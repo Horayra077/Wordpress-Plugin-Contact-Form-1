@@ -34,9 +34,3 @@ include(plugin_dir_path(__FILE__) . 'includes/plugin-assets.php');
 
 // Include dynamic-script
 include(WP_CONTACT_DIR . '/includes/dynamic-script.php');
-
-// // Include Rest API
-// include(WP_CONTACT_DIR . '/includes/rest_api.php');
-
-// Add options
-// include(WP_CONTACT_DIR . '/includes/add_options.php');
